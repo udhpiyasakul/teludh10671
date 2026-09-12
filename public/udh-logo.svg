@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 580" fill="none">
+  <defs>
+    <!-- Cross shape clip / reusable path -->
+    <path id="udh-cross" d="
+      M 190 30 
+      H 310 
+      A 35 35 0 0 1 345 65 
+      V 155 
+      A 25 25 0 0 0 370 180 
+      H 435 
+      A 35 35 0 0 1 470 215 
+      V 265 
+      A 35 35 0 0 1 435 300 
+      H 370 
+      A 25 25 0 0 0 345 325 
+      V 415 
+      A 35 35 0 0 1 310 450 
+      H 190 
+      A 35 35 0 0 1 155 415 
+      V 325 
+      A 25 25 0 0 0 130 300 
+      H 65 
+      A 35 35 0 0 1 30 265 
+      V 215 
+      A 35 35 0 0 1 65 180 
+      H 130 
+      A 25 25 0 0 0 155 155 
+      V 65 
+      A 35 35 0 0 1 190 30 
+      Z
+    "/>
+    <clipPath id="cross-clip">
+      <use href="#udh-cross" />
+    </clipPath>
+  </defs>
+
+  <!-- Cross Background & Border -->
+  <use href="#udh-cross" fill="#FCE4EC" stroke="#DE1C7A" stroke-width="15" stroke-linejoin="round" />
+
+  <!-- Inner Content Clipped to Cross -->
+  <g clip-path="url(#cross-clip)">
+    <!-- Top Petal Ornament -->
+    <g transform="translate(250, 105)">
+      <!-- Left magenta petal -->
+      <path d="M 0 -55 C -35 -30 -42 20 -15 35 C -5 20 -2 0 0 -55 Z" fill="#E01E79" />
+      <!-- Right magenta petal -->
+      <path d="M 0 -55 C 35 -30 42 20 15 35 C 5 20 2 0 0 -55 Z" fill="#E01E79" />
+      <!-- Center crimson leaf -->
+      <path d="M 0 -55 C -22 -15 -22 25 0 35 C 22 25 22 -15 0 -55 Z" fill="#B91C1C" />
+    </g>
+
+    <!-- Bottom Petal Ornament (mirrored vertically) -->
+    <g transform="translate(250, 375)">
+      <!-- Left magenta petal -->
+      <path d="M 0 55 C -35 30 -42 -20 -15 -35 C -5 -20 -2 0 0 55 Z" fill="#E01E79" />
+      <!-- Right magenta petal -->
+      <path d="M 0 55 C 35 30 42 -20 15 -35 C 5 -20 2 0 0 55 Z" fill="#E01E79" />
+      <!-- Center crimson leaf -->
+      <path d="M 0 55 C -22 15 -22 -25 0 -35 C 22 -25 22 15 0 55 Z" fill="#B91C1C" />
+    </g>
+
+    <!-- Center UDH Letters in Bold Crimson -->
+    <!-- U -->
+    <path d="
+      M 75 170 
+      H 130 
+      V 255 
+      A 25 25 0 0 0 155 280 
+      A 25 25 0 0 0 180 255 
+      V 170 
+      H 215 
+      V 255 
+      C 215 295 185 315 145 315 
+      C 105 315 75 295 75 255 
+      Z
+    " fill="#B91C1C" />
+
+    <!-- D -->
+    <path d="
+      M 195 170 
+      H 275 
+      C 325 170 345 200 345 242 
+      C 345 285 325 315 275 315 
+      H 195 
+      Z 
+      M 240 212 
+      V 273 
+      H 268 
+      C 295 273 305 260 305 242 
+      C 305 224 295 212 268 212 
+      Z
+    " fill="#B91C1C" fill-rule="evenodd" />
+
+    <!-- H -->
+    <path d="
+      M 325 170 
+      H 365 
+      V 220 
+      H 415 
+      V 170 
+      H 455 
+      V 315 
+      H 415 
+      V 260 
+      H 365 
+      V 315 
+      H 325 
+      Z
+    " fill="#B91C1C" />
+  </g>
+
+  <!-- Thai Hospital Name -->
+  <text 
+    x="250" 
+    y="510" 
+    text-anchor="middle" 
+    fill="#D81B60" 
+    font-family="'IBM Plex Sans Thai', 'Sarabun', 'Noto Sans Thai', sans-serif" 
+    font-size="44" 
+    font-weight="800"
+    letter-spacing="0.5"
+  >
+    โรงพยาบาลอุดรธานี
+  </text>
+
+  <!-- English Hospital Name -->
+  <text 
+    x="250" 
+    y="555" 
+    text-anchor="middle" 
+    fill="#D81B60" 
+    font-family="'IBM Plex Sans Thai', system-ui, sans-serif" 
+    font-size="32" 
+    font-weight="700"
+    letter-spacing="0.2"
+  >
+    Udon Thani Hospital
+  </text>
+</svg>

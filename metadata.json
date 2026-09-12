@@ -1,0 +1,8 @@
+{
+  "name": "สมุดโทรศัพท์โรงพยาบาลอุดรธานี",
+  "description": "สมุดโทรศัพท์และระบบค้นหาหมายเลขโทรศัพท์ภายใน-ภายนอก โรงพยาบาลอุดรธานี (UDH) พร้อมระบบ All Filter, โทรด่วน, สถิติแยกตามอาคาร/ชั้น และบันทึกเบอร์โปรด",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
