@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { UDHPhoneRecord } from '../types';
 import { BUILDING_COLORS } from '../data/constants';
+import { getCallablePhoneHref, getDialTooltip } from '../utils/phoneUtils';
 
 interface QuickLookupModalProps {
   isOpen: boolean;
@@ -229,9 +230,9 @@ export const QuickLookupModal: React.FC<QuickLookupModalProps> = ({
                         {isCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                       </button>
                       <a
-                        href={`tel:${item.phone.replace(/[^0-9]/g, '')}`}
+                        href={getCallablePhoneHref(item.phone)}
                         className="p-1.5 rounded-lg bg-teal-600 hover:bg-teal-700 text-white"
-                        title="โทรออก"
+                        title={getDialTooltip(item.phone, item.unit)}
                       >
                         <PhoneCall className="w-3.5 h-3.5" />
                       </a>

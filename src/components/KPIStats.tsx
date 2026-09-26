@@ -13,6 +13,7 @@ import {
   Accessibility,
   Droplet
 } from 'lucide-react';
+import { getCallablePhoneHref, getDialTooltip } from '../utils/phoneUtils';
 
 interface KPIStatsProps {
   totalRecords: number;
@@ -102,16 +103,24 @@ export const KPIStats: React.FC<KPIStatsProps> = ({
 
           {/* Operator Pills */}
           <div className="flex items-center gap-1.5 bg-cyan-950/70 border border-cyan-500/40 px-2.5 py-1 rounded-lg text-xs">
-            <span className="text-[11px] text-cyan-200 font-semibold">Operator กด:</span>
+            <span className="text-[11px] text-cyan-200 font-semibold">Operator:</span>
             {['0', '1000', '1001', '1002'].map((ext) => (
-              <button
-                key={ext}
-                onClick={() => onCallNumber(ext, `โอเปอเรเตอร์ ประชาสัมพันธ์ (${ext})`)}
-                className="px-1.5 py-0.5 rounded bg-cyan-800/80 hover:bg-cyan-700 text-cyan-100 font-mono font-bold text-xs transition-colors cursor-pointer"
-                title={`โอเปอเรเตอร์ กด ${ext}`}
-              >
-                {ext}
-              </button>
+              <div key={ext} className="flex items-center bg-cyan-800/80 rounded overflow-hidden">
+                <button
+                  onClick={() => onCallNumber(ext, `โอเปอเรเตอร์ ประชาสัมพันธ์ (${ext})`)}
+                  className="px-1.5 py-0.5 hover:bg-cyan-700 text-cyan-100 font-mono font-bold text-xs transition-colors cursor-pointer"
+                  title={`โอเปอเรเตอร์ กด ${ext} (คลิกเพื่อคัดลอก)`}
+                >
+                  {ext}
+                </button>
+                <a
+                  href={getCallablePhoneHref(ext)}
+                  className="p-1 hover:bg-cyan-600 text-cyan-200 hover:text-white border-l border-cyan-700/60"
+                  title={getDialTooltip(ext, `โอเปอเรเตอร์ (${ext})`)}
+                >
+                  <PhoneCall className="w-2.5 h-2.5" />
+                </a>
+              </div>
             ))}
           </div>
         </div>
@@ -129,48 +138,92 @@ export const KPIStats: React.FC<KPIStatsProps> = ({
               <span className="text-[10px] px-1.5 py-0.2 rounded bg-rose-200 text-rose-800 font-semibold">24 ชั่วโมง</span>
             </div>
             <p className="text-[11px] text-rose-700 hidden sm:block">
-              กดโทรตรงหรือคลิกเพื่อคัดลอกหมายเลขเร่งด่วน
+              กดปุ่มโทรตรงเพื่อโทรออก หรือคลิกเพื่อคัดลอกหมายเลขเร่งด่วน
             </p>
           </div>
         </div>
 
         {/* Rapid Dial Pills */}
         <div className="flex items-center gap-2 flex-wrap">
-          <button
-            onClick={() => onCallNumber('3124', 'ศูนย์สั่งการ กู้ชีพ 1669')}
-            className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-rose-300 rounded-lg text-xs text-rose-700 hover:bg-rose-100/60 font-medium transition-colors shadow-2xs cursor-pointer"
-          >
-            <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
-            <span className="font-semibold">กู้ชีพ 1669:</span>
-            <span className="font-mono font-bold text-rose-800">3124</span>
-          </button>
+          {/* 3124 */}
+          <div className="flex items-center bg-white border border-rose-300 rounded-lg overflow-hidden shadow-2xs">
+            <button
+              onClick={() => onCallNumber('3124', 'ศูนย์สั่งการ กู้ชีพ 1669')}
+              className="flex items-center gap-1.5 px-2.5 py-1 text-xs text-rose-700 hover:bg-rose-50 font-medium transition-colors cursor-pointer"
+              title="คัดลอกเบอร์ กู้ชีพ 1669 (3124)"
+            >
+              <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+              <span className="font-semibold">กู้ชีพ 1669:</span>
+              <span className="font-mono font-bold text-rose-800">3124</span>
+            </button>
+            <a
+              href={getCallablePhoneHref('3124')}
+              className="p-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 border-l border-rose-200"
+              title={getDialTooltip('3124', 'ศูนย์สั่งการ กู้ชีพ 1669')}
+            >
+              <PhoneCall className="w-3 h-3" />
+            </a>
+          </div>
 
-          <button
-            onClick={() => onCallNumber('3115', 'ศูนย์ส่งต่อ REFER')}
-            className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-rose-300 rounded-lg text-xs text-rose-700 hover:bg-rose-100/60 font-medium transition-colors shadow-2xs cursor-pointer"
-          >
-            <PhoneForwarded className="w-3 h-3 text-rose-600" />
-            <span className="font-semibold">REFER:</span>
-            <span className="font-mono font-bold text-rose-800">3115</span>
-          </button>
+          {/* 3115 */}
+          <div className="flex items-center bg-white border border-rose-300 rounded-lg overflow-hidden shadow-2xs">
+            <button
+              onClick={() => onCallNumber('3115', 'ศูนย์ส่งต่อ REFER')}
+              className="flex items-center gap-1.5 px-2.5 py-1 text-xs text-rose-700 hover:bg-rose-50 font-medium transition-colors cursor-pointer"
+              title="คัดลอกเบอร์ REFER (3115)"
+            >
+              <PhoneForwarded className="w-3 h-3 text-rose-600" />
+              <span className="font-semibold">REFER:</span>
+              <span className="font-mono font-bold text-rose-800">3115</span>
+            </button>
+            <a
+              href={getCallablePhoneHref('3115')}
+              className="p-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 border-l border-rose-200"
+              title={getDialTooltip('3115', 'ศูนย์ส่งต่อ REFER')}
+            >
+              <PhoneCall className="w-3 h-3" />
+            </a>
+          </div>
 
-          <button
-            onClick={() => onCallNumber('1135', 'ศูนย์เปล')}
-            className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-amber-300 rounded-lg text-xs text-amber-800 hover:bg-amber-100/60 font-medium transition-colors shadow-2xs cursor-pointer"
-          >
-            <Accessibility className="w-3 h-3 text-amber-600" />
-            <span className="font-semibold">ศูนย์เปล:</span>
-            <span className="font-mono font-bold text-amber-900">1135</span>
-          </button>
+          {/* 1135 */}
+          <div className="flex items-center bg-white border border-amber-300 rounded-lg overflow-hidden shadow-2xs">
+            <button
+              onClick={() => onCallNumber('1135', 'ศูนย์เปล')}
+              className="flex items-center gap-1.5 px-2.5 py-1 text-xs text-amber-800 hover:bg-amber-50 font-medium transition-colors cursor-pointer"
+              title="คัดลอกเบอร์ ศูนย์เปล (1135)"
+            >
+              <Accessibility className="w-3 h-3 text-amber-600" />
+              <span className="font-semibold">ศูนย์เปล:</span>
+              <span className="font-mono font-bold text-amber-900">1135</span>
+            </button>
+            <a
+              href={getCallablePhoneHref('1135')}
+              className="p-1.5 bg-amber-100 hover:bg-amber-200 text-amber-800 border-l border-amber-200"
+              title={getDialTooltip('1135', 'ศูนย์เปล')}
+            >
+              <PhoneCall className="w-3 h-3" />
+            </a>
+          </div>
 
-          <button
-            onClick={() => onCallNumber('1251', 'ธนาคารเลือด')}
-            className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-red-300 rounded-lg text-xs text-red-700 hover:bg-red-100/60 font-medium transition-colors shadow-2xs cursor-pointer"
-          >
-            <Droplet className="w-3 h-3 text-red-600" />
-            <span className="font-semibold">คลังเลือด:</span>
-            <span className="font-mono font-bold text-red-800">1251</span>
-          </button>
+          {/* 1251 */}
+          <div className="flex items-center bg-white border border-red-300 rounded-lg overflow-hidden shadow-2xs">
+            <button
+              onClick={() => onCallNumber('1251', 'ธนาคารเลือด')}
+              className="flex items-center gap-1.5 px-2.5 py-1 text-xs text-red-700 hover:bg-red-50 font-medium transition-colors cursor-pointer"
+              title="คัดลอกเบอร์ คลังเลือด (1251)"
+            >
+              <Droplet className="w-3 h-3 text-red-600" />
+              <span className="font-semibold">คลังเลือด:</span>
+              <span className="font-mono font-bold text-red-800">1251</span>
+            </button>
+            <a
+              href={getCallablePhoneHref('1251')}
+              className="p-1.5 bg-red-100 hover:bg-red-200 text-red-700 border-l border-red-200"
+              title={getDialTooltip('1251', 'ธนาคารเลือด')}
+            >
+              <PhoneCall className="w-3 h-3" />
+            </a>
+          </div>
         </div>
       </div>
 

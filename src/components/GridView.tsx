@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { UDHPhoneRecord } from '../types';
 import { BUILDING_COLORS } from '../data/constants';
+import { getCallablePhoneHref, getDialTooltip } from '../utils/phoneUtils';
 
 interface GridViewProps {
   records: UDHPhoneRecord[];
@@ -157,9 +158,9 @@ export const GridView: React.FC<GridViewProps> = ({
                   </button>
 
                   <a
-                    href={`tel:${item.phone.replace(/[^0-9]/g, '')}`}
+                    href={getCallablePhoneHref(item.phone)}
                     className="p-1.5 rounded-lg bg-teal-600 hover:bg-teal-700 text-white transition-all shadow-2xs"
-                    title={`โทร ${item.phone}`}
+                    title={getDialTooltip(item.phone, item.unit)}
                   >
                     <PhoneCall className="w-3.5 h-3.5" />
                   </a>

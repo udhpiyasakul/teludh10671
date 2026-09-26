@@ -11,6 +11,7 @@ import {
   Printer 
 } from 'lucide-react';
 import { EMERGENCY_NUMBERS } from '../data/constants';
+import { getCallablePhoneHref, getDialTooltip } from '../utils/phoneUtils';
 
 interface EmergencyModalProps {
   isOpen: boolean;
@@ -115,9 +116,9 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
                         {isCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                       </button>
                       <a
-                        href={`tel:${item.phone.replace(/[^0-9]/g, '')}`}
+                        href={getCallablePhoneHref(item.phone)}
                         className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition-all shadow-2xs"
-                        title="โทรทันที"
+                        title={getDialTooltip(item.phone, item.name)}
                       >
                         <PhoneCall className="w-3.5 h-3.5" />
                         <span>โทร</span>

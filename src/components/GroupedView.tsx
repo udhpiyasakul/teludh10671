@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { UDHPhoneRecord } from '../types';
 import { BUILDING_COLORS } from '../data/constants';
+import { getCallablePhoneHref, getDialTooltip } from '../utils/phoneUtils';
 
 interface GroupedViewProps {
   records: UDHPhoneRecord[];
@@ -216,9 +217,9 @@ export const GroupedView: React.FC<GroupedViewProps> = ({
                                     {isCopied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                                   </button>
                                   <a
-                                    href={`tel:${item.phone.replace(/[^0-9]/g, '')}`}
+                                    href={getCallablePhoneHref(item.phone)}
                                     className="p-1 rounded bg-teal-600 hover:bg-teal-700 text-white transition-all"
-                                    title="โทร"
+                                    title={getDialTooltip(item.phone, item.unit)}
                                   >
                                     <PhoneCall className="w-3 h-3" />
                                   </a>

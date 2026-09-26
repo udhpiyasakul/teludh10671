@@ -16,6 +16,7 @@ import {
   Printer 
 } from 'lucide-react';
 import { EMERGENCY_NUMBERS } from '../data/constants';
+import { getCallablePhoneHref, getDialTooltip } from '../utils/phoneUtils';
 
 interface SpeedDialViewProps {
   onCopyPhone: (phone: string, unit: string) => void;
@@ -127,9 +128,9 @@ export const SpeedDialView: React.FC<SpeedDialViewProps> = ({
                   </button>
 
                   <a
-                    href={`tel:${item.phone.replace(/[^0-9]/g, '')}`}
+                    href={getCallablePhoneHref(item.phone)}
                     className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition-all shadow-xs"
-                    title={`โทรหา ${item.name}`}
+                    title={getDialTooltip(item.phone, item.name)}
                   >
                     <PhoneCall className="w-4 h-4" />
                     <span>โทรทันที</span>
